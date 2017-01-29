@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+{% block title %}Student Details{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid songs-container">
+	<div class="row">
+
+		<!-- Left Student Information -->
+		<div class="col-sm-4 col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<a href="{% url 'index' %}">
+						<img src="{{ all_students.Image.url }}" class="img-responsive" height="100" width="300">
+					</a>
+					<h1><center> {{ all_students.Name }} </center></h1>
+					<h2>
+						<small><center><i>{{ all_students.Registration_No }}</i></center></small>
+					</h2>
+					<h2><i><center>{{ all_students.Course }}</center></i></h2>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-8 col-md-9">
+
+			<ul class="nav nav-pills" style="margin-bottom: 10px;">
+				<li class="active"><a href="{% url 'detail' all_students.id %}">All Record Details</a></li>
+				</ul>
+
+				<div class="panel panel-default">
+					<div class="panel-body">
+
+						<h3> All Details </h3>
+						<table class="table">
+							<thread>
+								<tr>
+									<th>Name</th>
+									<th>Problem</th>
+									<th>Date</th>
+									<th>Prescription</th>
+									<th>Lab Report</th>
+									<th>Ward Report</th>
+									<th>Maternity Report</th>
+								</tr>
+							</thread>
+							<tbody>
+							{% for object in students %}
+								<tr>
+								{% if object.Student_Name == all_students.Name %}
+									<td>{{ object.Student_Name }}</td>
+									<td>{{ object.Problem }}</td>
+									<td>{{ object.Date }}</td>
+									<td>{{ object.Prescription }}</td>
+									<td>{{ object.Lab_Results }}</td>
+									<td>{{ object.Ward_Report }}</td>
+									<td>{{ object.Maternity_Services }}</td>
+									{% endif %}
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+
+{% if error_message %}
+	<p><strong>{{ error_message }}</strong></p>
+{% endif %}
+{% endblock %}
