@@ -4,7 +4,6 @@ from django.core.urlresolvers import reverse_lazy
 from .models import Records,Student_Database
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-
 class IndexView(generic.ListView):
     template_name = 'index.html'
     context_object_name = 'all_students'
